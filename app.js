@@ -1,51 +1,40 @@
-var red ={
-  color: 'red',
-  total: 0
-};
-var yellow = {
-  color: 'yellow',
-  total: 0
-};
-var green = {
-  color: 'green',
-  total: 0
-};
-var blue = {
-  color: 'blue',
-  total: 0
-};
-
+//var $colorClass = (#)
 $(document).ready(function(){
-  $('.color-button').on('click', function(){
-      var $redbox = $('<div></div>');
-      $redbox.addClass('red color-cube');
-      $('.container').append($redbox);
-      red.total += 1;
-      $('body').find('#red').text('');
-      $('body').find('#red').text('Total red: ' + red.total);
-  })
-  $('.color-button').on('click', function(){
-      var $yellowbox = $('<div></div>');
-      $yellowbox.addClass('yellow color-cube');
-      $('.container').append($redbox);
-      yellow.total += 1;
-      $('body').find('#yellow').text('');
-      $('body').find('#yellow').text('Total yellow: ' + yellow.total);
-  })
-  $('.color-button').on('click', function(){
-      var $greenbox = $('<div></div>');
-      $greenbox.addClass('green color-cube');
-      $('.container').append($redbox);
-      green.total += 1;
-      $('body').find('#green').text('');
-      $('body').find('#green').text('Total green: ' + green.total);
-  })
-  $('.color-button').on('click', function(){
-      var $redbox = $('<div></div>');
-      $bluebox.addClass('blue color-cube');
-      $('.container').append($bluebox);
-      blue.total += 1;
-      $('body').find('#blue').text('');
-      $('body').find('#blue').text('Total blue: ' + blue.total);
- })
+
+  registerEvents();
 });
+
+function registerEvents() {
+  $('button').on('click', handleClick);
+}
+var red = 0;
+var green = 0;
+var yellow = 0;
+var blue = 0;
+function handleClick() {
+  var buttonClick = $(this).data('color');
+  console.log(buttonClick);
+  var $boxCreate = $('<div></div>');
+  //Try passing the data to a variable and passing the variable into addClass
+  $boxCreate.addClass('color-cube').addClass(buttonClick)  ;
+  $('.container').append($boxCreate);
+  switch (buttonClick) {
+    case 'red':
+      red++;
+      $('#red').empty().text('Total red: ' + red);
+      break;
+    case 'green':
+      green++;
+      $('#green').empty().text('Total green: ' + green);
+      break;
+    case 'yellow':
+      yellow++;
+      $('#yellow').empty().text('Total yellow: ' + yellow);
+      break;
+    case 'blue':
+      blue++;
+      $('#blue').empty().text('Total blue: ' + blue);
+      break;
+  }
+
+}
